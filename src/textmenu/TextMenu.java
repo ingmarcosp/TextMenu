@@ -36,25 +36,25 @@ public final class TextMenu {
     * Ugly??
     */
     public void createPrincipalMenu() {
-        principalMenu.put("p", new Runnable() { public void run() { view.showProfile();}});
-        principalMenu.put("P", new Runnable() { public void run() { view.showProfile();}});
+        principalMenu.put("p", view::showProfile);
+        principalMenu.put("P", view::showProfile);
         principalMenu.put("a", new Runnable() { public void run() { 
                 view.showActivity();
                 TextMenu submenu;
                 HashMap<String, Runnable> menu = new HashMap<String, Runnable>();
-                menu.put("m", new Runnable() { public void run() { view.moreDetails();}});
-                menu.put("M", new Runnable() { public void run() { view.moreDetails();}});
-                menu.put("b", new Runnable() { public void run() { loop = false;}});
-                menu.put("B", new Runnable() { public void run() { loop = false;}});
+                menu.put("m", view::moreDetails);
+                menu.put("M", view::moreDetails);
+                menu.put("b", (Runnable) () -> { loop = false; });
+                menu.put("B", (Runnable) () -> { loop = false; });
                 submenu = new TextMenu(menu);
-                submenu.run(new Runnable() {public void run() {view.activityMenu();}});
+                submenu.run(view::activityMenu);
                 loop = true;
                 createPrincipalMenu();
             }});
         principalMenu.put("A", new Runnable() { public void run() { 
                 view.showActivity();
                 TextMenu submenu;
-                HashMap<String, Runnable> menu = new HashMap<String, Runnable>();
+                HashMap<String, Runnable> menu = new HashMap<>();
                 menu.put("m", new Runnable() { public void run() { view.moreDetails();}});
                 menu.put("M", new Runnable() { public void run() { view.moreDetails();}});
                 menu.put("b", new Runnable() { public void run() { loop = false;}});
@@ -64,8 +64,9 @@ public final class TextMenu {
                 loop = true;
                 createPrincipalMenu();
             }});
-        principalMenu.put("q", new Runnable() { public void run() { view.quit();
-                                                                    System.exit(0);}});
+        principalMenu.put("q", (Runnable) () -> {view.quit();
+                                                 System.exit(0);
+                                            });
         principalMenu.put("Q", new Runnable() { public void run() { view.quit();
                                                                     System.exit(0);}});
     }
@@ -80,12 +81,6 @@ public final class TextMenu {
             else {
                 view.wrongOption();
             }
-        }
-    }
-    
-    public void back(boolean back) {
-        if(!back) {
-            loop = back;
         }
     }
 }
