@@ -47,5 +47,4 @@ public class ViewMenu {
         System.out.println("Sorry, wrong Option. Try the in the braces '[]'");
         
     }
-    
 }
