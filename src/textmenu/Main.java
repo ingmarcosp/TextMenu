@@ -11,15 +11,15 @@ package textmenu;
  */
 public class Main {
 
-    private static TextMenu menu;
-    private static ViewMenu view;
+//    private static TextMenu menu;
     
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        menu = new TextMenu();
-        menu.createPrincipalMenu();
-        menu.run(new Runnable() {public void run() {view.principalMenu();}});
+//        menu = new TextMenu();
+//        menu.createPrincipalMenu();
+//        menu.run(new Runnable() {public void run() {view.principalMenu();}});
+        NewTextMenu menu = new NewTextMenu();
     }
 }

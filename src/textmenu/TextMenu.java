@@ -5,11 +5,8 @@
  */
 package textmenu;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Scanner;
-import textmenu.ViewMenu.*;
 
 /**
  *
@@ -43,21 +40,17 @@ public final class TextMenu {
     * Ugly??
     */
     public void createPrincipalMenu() {
-        principalMenu.put("p", view::showProfile);
+        principalMenu.put("p", view::showProfile); //.put("p", ["Show Profile", view::showProfile])
         principalMenu.put("P", view::showProfile);
-        principalMenu.put("a", new Runnable() { public void run() { 
-                runActivityMenu();
-            }});
-        principalMenu.put("A", new Runnable() { public void run() { 
-                runActivityMenu();
-            }});
+        principalMenu.put("a", this::runActivityMenu);
+        principalMenu.put("A", this::runActivityMenu);
         principalMenu.put("q", (Runnable) () -> {quitProgram();});
         principalMenu.put("Q", (Runnable) () -> {quitProgram();});
     }
     
     private void createActivityMenu() {
-        activityMenu.put("m", new Runnable() { public void run() { view.moreDetails();}});
-        activityMenu.put("M", new Runnable() { public void run() { view.moreDetails();}});
+        activityMenu.put("m", view::moreDetails);
+        activityMenu.put("M", view::moreDetails);
     }
     
     private void runActivityMenu() {
